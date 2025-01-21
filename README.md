@@ -1,91 +1,389 @@
-# Try Out Development Containers: Java
+# ECM1410: Object Oriented Programming
+**Week 02: Java Basics Practice**
 
-[![Open in Dev Containers](https://img.shields.io/static/v1?label=Dev%20Containers&message=Open&color=blue&logo=visualstudiocode)](https://vscode.dev/redirect?url=vscode://ms-vscode-remote.remote-containers/cloneInVolume?url=https://github.com/microsoft/vscode-remote-try-java)
 
-A **development container** is a running container with a well-defined tool/runtime stack and its prerequisites. You can try out development containers with **[GitHub Codespaces](https://github.com/features/codespaces)** or **[Visual Studio Code Dev Containers](https://aka.ms/vscode-remote/containers)**.
+### 1. Coding `HelloWorldApp.java`
 
-This is a sample project that lets you try out either option in a few easy steps. We have a variety of other [vscode-remote-try-*](https://github.com/search?q=org%3Amicrosoft+vscode-remote-try-&type=Repositories) sample projects, too.
+#### 1.1 Setting up the CodeSpaces workspace
 
-> **Note:** If you already have a Codespace or dev container, you can jump to the [Things to try](#things-to-try) section.
+Accept the GitHub assignment for workshop 2, and open it in CodeSpaces.
 
-## Setting up the development container
+#### 1.2 Create the source code
 
-### GitHub Codespaces
-Follow these steps to open this sample in a Codespace:
-1. Click the **Code** drop-down menu.
-2. Click on the **Codespaces** tab.
-3. Click **Create codespace on main**.
+Open the file `HelloWorldApp.java`
 
-For more info, check out the [GitHub documentation](https://docs.github.com/en/free-pro-team@latest/github/developing-online-with-codespaces/creating-a-codespace#creating-a-codespace).
+Add the following content to the file:
 
-### VS Code Dev Containers
+```java
+// HelloWorld application
+public class HelloWorldApp {
+    public static void main(String[] args) {
+        System.out.println("Hello World!");
+    }
+}
+```
 
-If you already have VS Code and Docker installed, you can click the badge above or [here](https://vscode.dev/redirect?url=vscode://ms-vscode-remote.remote-containers/cloneInVolume?url=https://github.com/microsoft/vscode-remote-try-java) to get started. Clicking these links will cause VS Code to automatically install the Dev Containers extension if needed, clone the source code into a container volume, and spin up a dev container for use.
+Note: If you find yourself copying code from a pdf file or online, you may see compile time error (e.g., illegal character). This is because some special characters (such as double quote, single quote) are coded in different way (or may be misformatted). You may fix it by deleting and retyping these special characters.
 
-Follow these steps to open this sample in a container using the VS Code Dev Containers extension:
+#### 1.3 Compile the source code
 
-1. If this is your first time using a development container, please ensure your system meets the pre-reqs (i.e. have Docker installed) in the [getting started steps](https://aka.ms/vscode-remote/containers/getting-started).
+In the Terminal panel (lower half of the screen) type the following to compile the program, then press enter:
 
-2. To use this repository, you can either open the repository in an isolated Docker volume:
+```
+>> javac HelloWorldApp.java
+```
 
-    - Press <kbd>F1</kbd> and select the **Dev Containers: Try a Sample...** command.
-    - Choose the "Java" sample, wait for the container to start, and try things out!
-        > **Note:** Under the hood, this will use the **Dev Containers: Clone Repository in Container Volume...** command to clone the source code in a Docker volume instead of the local filesystem. [Volumes](https://docs.docker.com/storage/volumes/) are the preferred mechanism for persisting container data.
+(Note the prompt where you type on the command line is `$` in the CodeSpaces Terminal panel, but we will use `>>` to represent it 
+ 
+If the compilation is successful, the compiler will generate a file named
+`HelloWorldApp.class` in the same directory as the Java source file.
 
-   Or open a locally cloned copy of the code:
+This class file contains the Java Byte Code we discussed in the first lecture.
+If the compilation failed, try to fix it yourself by reading the error message. 
 
-   - Clone this repository to your local filesystem.
-   - Press <kbd>F1</kbd> and select the **Dev Containers: Open Folder in Container...** command.
-   - Select the cloned copy of this folder, wait for the container to start, and try things out!
+Ask one of the teaching team (or neighbour) if you are not able to fix the problem.
 
-## Things to try
+#### 1.4 Run the program
 
-Once you have this sample opened, you'll be able to work with it like you would locally.
+At this point you should have successfully generated the java byte code (`HelloWorldApp.class`), we may pass it to the Java virtual Machine (JVM) to be interpreted and run. 
 
-Some things to try:
+To do this use the command line prompt in the Terminal panel. Type the following to compile the program, then press enter:
 
-1. **Edit:**
-   - Open `src/main/java/com/mycompany/app/App.java`.
-   - Try adding some code and check out the language features.
-   - Make a spelling mistake and notice it is detected. The [Code Spell Checker](https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker) extension was automatically installed because it is referenced in `.devcontainer/devcontainer.json`.
-   - Also notice that the [Extension Pack for Java](https://marketplace.visualstudio.com/items?itemName=vscjava.vscode-java-pack) is installed. The JDK is in the `mcr.microsoft.com/devcontainers/java` image and Dev Container settings and metadata are automatically picked up from [image labels](https://containers.dev/implementors/reference/#labels).
+```
+>> java HelloWorldApp
+```
 
-2. **Terminal:** Press <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>\`</kbd> and type `uname` and other Linux commands from the terminal window.
+#### 1.5 Modify the code
 
-3. **Build, Run, and Debug:**
-   - Open `src/main/java/com/mycompany/app/App.java`.
-   - Add a breakpoint.
-   - Press <kbd>F5</kbd> to launch the app in the container.
-   - Once the breakpoint is hit, try hovering over variables, examining locals, and more.
+Feel free to try and change the message from “Hello World!” to something else. You’ll need to recompile and rerun the resulting file in order to see the effects of your changes each time.
 
-4. **Run a Test:**
-   - Open `src/test/java/com/mycompany/app/AppTest.java`.
-   - Put a breakpoint in a test.
-   - Click the `Debug Test` in the Code Lens above the function and watch it hit the breakpoint.
+Let’s do something cool! How about we adapt the code so we can pass in your name and age from the terminal and let the program prints them out. 
 
-5. **Install Node.js using a Dev Container Feature:**
-   - Press <kbd>F1</kbd> and select the **Dev Containers: Configure Container Features...** or **Codespaces: Configure Container Features...** command.
-   - Type "node" in the text box at the top.
-   - Check the check box next to "Node.js (via nvm) and yarn" (published by devcontainers) 
-   - Click OK
-   - Press <kbd>F1</kbd> and select the **Dev Containers: Rebuild Container** or **Codespaces: Rebuild Container** command so the modifications are picked up.
+We can access the arguments used when the program is executed, by accessing the strings array `args` object that is defined on the function definition line: 
 
-  
-## Contributing
+We can access individual string objects from this array use code like `args[0]` and `args[1]` etc.
 
-This project welcomes contributions and suggestions. Most contributions require you to agree to a
-Contributor License Agreement (CLA) declaring that you have the right to, and actually do, grant us
-the rights to use your contribution. For details, visit https://cla.microsoft.com.
+Adapt the program to update it with the code below
 
-When you submit a pull request, a CLA-bot will automatically determine whether you need to provide
-a CLA and decorate the PR appropriately (e.g., label, comment). Simply follow the instructions
-provided by the bot. You will only need to do this once across all repos using our CLA.
+```java
+System.out.println("Hello World! My name is " + args[0] + ".")
+```
 
-This project has adopted the [Microsoft Open Source Code of Conduct](https://opensource.microsoft.com/codeofconduct/).
-For more information see the [Code of Conduct FAQ](https://opensource.microsoft.com/codeofconduct/faq/) or
-contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additional questions or comments.
+Recompile and run the program, passing your name as an argument. 
 
-## License
+```
+>> java HelloWorldApp YOURNAME
+```
 
-Copyright © Microsoft Corporation All rights reserved.<br />
-Licensed under the MIT License. See LICENSE in the project root for license information.
+You should see the following:
+
+```
+Hello World! My name is YOURNAME. 
+```
+
+Note that in addition to `System.out.println` java has the command `System.out.print` (which prints without ending with a newline) and is useful if we want to build up output in stages.
+
+e.g. we can use this to rewrite our code in the following way (note how the final section uses `println` to end the line.)
+
+```java
+System.out.print("Hello World! My name is ");
+System.out.print(args[0]);
+System.out.println(".")
+```
+
+**Task**
+
+Adapt the code so you can run the program using:
+
+```
+>> java HelloWorldApp YOURNAME YOURAGE
+```
+
+So that the output is:
+
+```
+Hello World! My name is YOURNAME. I am YOURAGE years old.
+```
+
+Experiment with your code. What happens if you pass a single argument? What about three arguments? In later sessions we will learn how to write code that can adapt to different situations.
+
+
+When you have completed this, please commit your work to upload it to the classroom.
+
+### 2. Coding `VariablesTest.java`
+
+#### 1. literals
+
+In this activity we will explore some different Java literals (boolean /  numerical / string data).
+
+Right click in the Files panel and select **New File**. 
+
+Name the file: `VariablesTest.java` and use the following template code as a starting point.
+
+```java
+// VariablesTest application
+public class VariablesTest {
+    public static void main(String[] args) {
+        int x = 4
+    
+    }
+}
+```
+
+Add a second line of code to display the value of variable `x`.
+
+```java
+        System.out.println("x: " + x);
+```
+
+Recompile and run the code, and check the output is as expected.
+
+**Explore**
+
+See what happens if you change the double quotes `" "` to single quotes `' '` (hint. you will have to change them back to get your code to work!)
+
+Now add the two of the lines of code below. Then add two further lines to print the values associated with the following statements following the format used above (*`name: value`*)
+
+```java
+byte s_per_min = 60;
+long s_per_day = (s_per_min * 60 * 24);
+```
+
+**Explore**
+
+See what happens if you switch round the types of the last two statements i.e.
+
+```java
+long s_per_min = 60;
+byte s_per_day = (s_per_min * 60 * 24);
+```
+
+You will see an error because Java detects you are taking a calculation involving `long` type integers, and storing the result in a `byte` type integer which has a much smaller range (so that only 8 bits of the 64 bit `long` number can be stored). 
+
+In certain cases we may wish to override this error, to force conversion. We can do this by adding code that indicates we explicitly wish to convert the result to a `byte` object.
+
+```java
+long s_per_min = 60;
+byte s_per_day = (byte) (s_per_min * 60 * 24);
+```
+
+If you look at the result you will see the conversion down to 8-bits means the result is stored changes. 
+
+It is important to be aware of some of the behaviours of Java. The example statements include other variable assignments in which the resulting value stored may differ from your expectations. 
+
+Add the following to your file and display their values (again using format *`name: value`*). 
+
+```java
+float area = 20.3F
+char a = '\u5468', b = '\\';
+int nHours = 022;
+double ratio = 7/5;
+```
+
+#### 2. Numerical precision
+
+The calculations for `d1` and `d2` should both result in value `2900`. However the calculations use floating point numbers that during processing are converted into and back from binary representations, in which small rounding errors can develop. (The maximum level of precision will depend on the amount of memory allocated to each value).
+
+Add the following to the bottom of your code, and you should see this effect in action.
+
+```java
+double d1 = 0.29/0.0001;
+double d2 = 0.00029*1.0e7;
+System.out.println("d1: " + d1);
+System.out.println("d2: " + d1);
+```
+
+An issue related to this can occur if we try to test floating point numbers for equality. Add the following line to your code, that checks if `d1` and `d2` store the same value.
+
+```java
+System.out.println("d1 equals d2: " + (d1 == d2) );
+```
+
+When I run this code the test evaluates to `false` (even though they both display as the same value!). It is important to remember that even neglibly small differences can affect a test comparing the values of floating point numbers. 
+
+For this reason while we may use an equality test on integer values, we avoid them for floating point numbers. Instead code similar to the following can be used to check if floating point numbers store the same value to a given tolerance.
+
+```java
+double epsilon = 1e-10;
+if (Math.abs(d1 - d2) < epsilon) {
+    System.out.print("d1,d2 differ by less than ");
+    System.out.println( epsilon );
+}    
+```
+
+**Explore**
+
+What happens if you do not declare that `epsilon` is a `double`, i.e. modify your line to:
+
+```java
+epsilon = 1e-10;
+```
+
+It is useful to get familiar with the resulting errors that are shown during compilation especially if you are transferring from Python where you do not have to explicitly declare object types when they are created.
+
+If you haven't already experienced it, find out what happens if you remove one of the semi-colons `;` from the code.
+
+### 3 Coding `MyBirthday.java`
+
+#### 3.1 The problem
+
+In this exercise we will assume that we are near the start of our birthday month, where our birthday is near to the end of the current month. We decide to write a program to calculate on which weekday our birthday.
+
+We will do this by using the following variables:
+
+ - the **current week day** ( `int` in range 0-6 )
+ - the **current date in the month** ( `int` in range 1-31 ) 
+ - the **date of our birthday** (`int` in range 1-31 )
+
+The weekday values uses the following mapping: 0 Sun, 1 Mon, 2 Tues ...  
+
+We will try to calculate:
+
+  - the **week day our birthday falls on** (int in range 0-6) 
+
+#### Example
+
+Let's use the following example to test our code:
+
+Today's date: **Tues 7th Jan**
+
+Birthday: **23rd January** (which will be a **Thursday**) 
+
+i.e. 
+
+with variables `2`, `7`, `23` we expect to get result `4`.
+
+#### 3.2 Writing the program
+
+Create new file `MyBirthday.java` in your codespace working directory.
+
+You may start with the following template code. Note how the variable names have been chosen to describe the content they store. 
+
+Note also how values which will remain constant can be defined through the `final` specifier. 
+
+*(Why do think it is useful for the compiler to be given this information?)*
+
+```java
+// MyBirthday application
+public class MyBirthday {
+    public static void main(String[] args) {
+        int currentDay = 2; 
+        int currentDate = 7; 
+        int myBirthdayDate = 23; 
+
+        // value below is a constant
+        final int DAYS_A_WEEK = 7; 
+        
+        // Tasks
+
+        // 1. calc number of days from current date
+        //    to birthday 
+
+
+        // 2. use this along with the current weekday 
+        //    to find when the birthday falls
+
+
+        // 3. Display the result
+    
+
+    }
+}
+```
+
+For part `2.` recall the modulo operator `%` that finds the remainder after an integer division, 
+
+e.g. `23%10` gives `3` and `15%7` gives `1`. 
+
+This can be used to convert a weekday calculation, 
+
+e.g. if the current day is Friday (5) in eleven days time the weekday will be `(11+5)%7` = `16%7` = `2` i.e. a Tuesday.
+
+#### 3.3 Extending the functionality
+
+To make this more useful we might try to adapt the code so the compiled program can be called with arguments to specify other situations.
+
+You will find that the same code as we used earlier will not work:
+
+```
+int currentDay = args[0];
+```
+
+This is because, as indicated in the function definition, the arguments are in the form of a string array, and we need to convert these into numerical type if we are to utilise them in calculations.
+
+To convert the string to an integer we can use the following code:
+
+```java
+int currentDay = Integer.ParseInt(args[0]);
+```
+
+Edit your code so that it can be used with different inputs. Check that for the following inputs your code matches the output below:
+
+```
+>> java MyBirthday 2 7 23
+Birthday falls on: 4
+```
+
+**Explore**
+
+Consider how you could reduce the memory requirements of your code by using alternative variable types. Do you think this process would be worth doing in practise?
+
+### 4 Coding `RectangleComputation.java`
+
+In the lecture you were set a task of coding a program that could find the area, radius and perimeter of a circle.
+
+Add an additional file to your workspace called `RectangleComputation.java` 
+
+In this file write a program that will take two arguments, containing the height and width of a rectangle (as doubles).
+
+Your program should print out the area and perimeter of a rectangle and display the result in the format below:
+
+```
+shape: rectangle
+area: XXXXX
+perimeter: XXXXX
+```
+
+You do not have the round or format the results.
+
+As an extension add code that declare a boolean variable `isSquare`.
+Assign a value to it depending on the ratio between the height and width.
+If the ratio equals to 1 (to a tolerance of 0.1%)  `isSquare` should be set to `true`, and `false` otherwise.
+
+Use the value of `isSquare` to correctly identify the shape in the first line of the output (i.e. so it will print `shape: square` for a square and `rectangle` otherwise. 
+
+Notes: 
+
+ - Use the correct way of testing floats for equality, as mentioned above.
+ - The syntax for `if`-`else` statement in Java is as follows.
+
+```
+if (condition) {
+
+    ...
+
+} else {
+    
+    ...
+
+}
+```
+
+### 5 More exercises
+
+If you finish all the above exercises, download examples from the lectures, do some changes and run it. Make sure you understand how they work.
+There are also many examples and exercises available online. There are some listed on the ELE. 
+
+For example, this link from NTU (Nanyang Techno-logical University, Singapore) contains many exercises for practicing Java basics: 
+
+https://www.ntu.edu.sg/home/ehchua/programming/java/J2a_BasicsExercises.html
+
+### 6 Optional Challenge: MyBirthdayPro.java
+
+This is an optional activity for students wishing a challenge. It may require you to research additional appropriate methods, and is considerably more difficult than the exercises above.
+
+Explore how to write a better version of the program that takes 5 arguments:
+
+current date, current month, current year, birthday date, birthday month
+
+It should calculate the weekday on which your next birthday will fall, and print it in string form (`Mon`, `Tue`, `Wed` etc). 
